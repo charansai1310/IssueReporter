@@ -69,16 +69,13 @@
                 return;
             }
             
-            // Track using New Relic custom event instead of page action
+            // Track the event in New Relic
             if (typeof newrelic !== 'undefined') {
-                // Create custom event - this is the key change from the previous version
-                newrelic.recordCustomEvent('IssueSubmission', {
+                newrelic.addPageAction('issueSubmitted', {
                     userName: userName,
                     issueDescription: issueDescription,
                     timestamp: new Date().toISOString()
                 });
-                
-                console.log('Issue submitted to New Relic:', userName, issueDescription);
                 
                 // Show confirmation
                 document.getElementById('confirmation').style.display = 'block';
